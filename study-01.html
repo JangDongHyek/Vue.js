@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+
+        <div id="app">
+            {{message}}
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+
+        <script type="text/javascript">
+            // 인스턴스 생성 * Vue는 생성자
+            new Vue({
+                el: '#app', // 선택자 규칙은 css선택자 규칙과 동일하다
+                data: { // 데이터 속성 json의 형태
+                    message: 'Hello'    // 변수명 : 데이터
+                }
+            });
+
+            /*
+            인스턴스 옵션 속성
+                * template = 화면에 표시할 HTML, CSS 등의 마크업 요소를 정의하는 속성. 뷰의 데이터 및 기타 속성 들도 함께 화면에 그릴 수 있다
+                * methods = 화면 로직 제어와 관계된 매서드를 정의하는 속성. 마우스 클릭 이벤트 처리 같이 화면의 전반적인 이벤트와 하면 동작 관련 로직을 추가
+                * created = 뷰 인스턴스가 생성되자마자 실행할 로직을 정의할 수 있는 속성.
+            */
+        </script>
+    </body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+
+        <div id="app7">
+            <ol>
+                <tobo-item
+                 v-for="item in list"   <!-- 뷰포문 파이썬과 같은 형식 -->
+                 v-bind:tobo = "item"   <!-- 동적으로 하는 구문 -->
+                 v-bind:key = "item.id">    <!-- 노드들을 추적하고 엘리먼트를 재사용하기위해선 key 속성을 사용한다한다 (무슨소리지) -->
+                </tobo-item>
+            </ol>
+        </div>
+
+        <div id="app8">
+            <ol>
+                <tobo-item
+                 v-for="item in list"   <!-- 뷰포문 파이썬과 같은 형식 -->
+                 v-bind:tobo = "item"   <!-- 동적으로 하는 구문 -->
+                 v-bind:key = "item.id">    <!-- 노드들을 추적하고 엘리먼트를 재사용하기위해선 key 속성을 사용한다한다 (무슨소리지) -->
+                </tobo-item>
+            </ol>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+
+        <script type="text/javascript">
+            Vue.component('tobo-item', {    // 컴포넌트 생성
+                props : ['tobo'],   // 데이터를 효율적으로 사용하기윈한 인터페이스 , 부모와 자식의 분리?
+                template : '<li>{{tobo.text}}</li>' // tobo-item 의 템플릿
+            })
+
+            var app7 = new Vue({    // 인스턴스 생성
+                el : '#app7',   // 지역선언
+                data : {    // 데이터 (json 형태)
+                    list : [    // 배열형태의 데이터
+                        { id : 0, text : "(thanos)"},
+                        { id : 2, text : "(finger snap)"},
+                        { id : 1, text : ".......?"}
+
+                    ]
+                }
+            })
+
+            var app8 = new Vue({    // 인스턴스 생성
+                el : '#app8',   // 지역선언
+                data : {    // 데이터 (json 형태)
+                    list : [    // 배열형태의 데이터
+                        { id : 0, text : "i'm"},
+                        { id : 1, text : "iron man"},
+                        { id : 2, text : "(finger snap)"}
+                    ]
+                }
+            })
+
+
+
+            /*
+            1. tobo-item 컴포넌트를 생성 props 는 tobo
+            2. tobo-item 태그를 이용해 html 생성
+            3. tobo-item 에 필요한 인스턴스생성 , el을 통한 지역선언 , data 생성
+            4. tobo-item 콤포넌트가 생성된 인스턴스에 따라 DOM이 나온다
+            */
+        </script>
+    </body>
+</html>
