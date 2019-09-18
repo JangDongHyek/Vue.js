@@ -10,7 +10,7 @@
             <ol>
                 <tobo-item
                  v-for="item in list"   <!-- 뷰포문 파이썬과 같은 형식 -->
-                 v-bind:tobo = "item"   <!-- 동적으로 하는 구문 -->
+                 v-bind:tobo = "item"   <!-- 동적으로 하는 구문 데이터가변경되면 화면이 다시 랜더링? 한답니다 -->
                  v-bind:key = "item.id">    <!-- 노드들을 추적하고 엘리먼트를 재사용하기위해선 key 속성을 사용한다한다 (무슨소리지) -->
                 </tobo-item>
             </ol>

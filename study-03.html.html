@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+
+
+
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+
+        <script>
+
+            var data = { a : 1} // 데이터 객체
+
+            var vm = new Vue({  // 인스턴스 생성
+                data : data
+            })
+
+            // 같은 객체를 참조
+            vm.a === data.a     // true
+
+            vm.a = 2
+            data.a  // => 2
+
+            data.a = 3
+            vm.a    // => 3
+
+            /*
+             1. 데이터가 변경되면 화면은 다시 렌더링이 된다
+             2. 유념해야할것 data에 있는 속성들은 인스턴스가 생성될 때 존재한것만 반응형이다
+             3. vm.b = 'hi' < 이런식으로 새속성을 추가해도 화면이 갱신되지는 않음
+             4. 나중에 필요해 빈 값이거나 존재하지 않는 상태로 시작할려면 아래처럼 시작.
+            */
+
+            data : {
+                newToboTest : '',
+                visitCount : 0,
+                hideCompletedTodos : false,
+                tobos: [],
+                error : null
+            }
+
+            /*
+            1. 이런식으로 만들면 나중에 값을 변경해 화면 렌더링을 이용할수있다
+            2. 이 부분에서 유일한 예외가있는데 Object.freeze() 함수이다
+            3. 이 함수는 기존 속성이 변경되는것을 막아 반응성 시스템이 추적할수 없다.
+            */
+
+            var obj = { // 데이터 생성
+                foo : 'bar'
+            }
+
+            Object.freeze(obj)  // 함수 사용
+
+            new Vue({   // 인스턴스 생성
+                el : '#app',
+                data : obj
+            })
+
+        </script>
+
+        <div id="app">
+            <p> {{ foo }} </p>
+            <button v-on:click="foo = 'baz'"> Click Event </button>
+        </div>
+
+        <!--
+        1. 원래였으면 버튼을 클릭시 data 인 foo 는 baz 로 바꼇어야 했다
+        2. 하지만 Object.freeze() 함수로인해 변하지않는다
+        -->
+
+        <script>
+            var data = { a : 1 }    // 데이터 생성
+            var vm = new Vue({  // 인스턴스 생성
+                el : '#example', // 지역선언
+                data : data // 데이터 대입
+            })
+
+            vm.$data === data   // => true
+            vm.$el === document.getElementById('example')   // => true
+
+
+            vm.$watch('a', function (newVal, oldVal) {  // $watch 는 인스턴스 매소드라고한다 (내부 메소드인가?)
+                // vm.a 가 변경되면 호출되는 부분
+            })
+
+            /*
+            1. 여기서 알게 될것은 데이터의 구분하기위해 $접두어를 붙인다는것.
+            2. 값이 변경될때 이벤트를 추가할수 있다는것
+            */
+
+            // 2019-09-18 퇴근시간이 너무늦어서 퇴근, 다음에 인스턴스 라이프사이클 훅부터 다시하면됨
+
+        </script>
+    </body>
+</html>
